@@ -1,17 +1,56 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 # json-forge
+
+サンプルJSONを読み込んで構造を解析し、テスト用のダミーJSONデータを大量に生成できるWebツールです。
+
+## 主な機能
+
+- **JSON解析**: 入力したJSON(配列 or オブジェクト)の構造を自動解析し、各フィールドをパス単位でリストアップ
+- **生成ルールの指定**: フィールドごとに以下のいずれかを選択可能
+  - 既存値: 入力データに実際に登場した値からランダムに選択
+  - 連番: 任意のprefixと開始番号を指定して連番を生成
+  - 固定値: 常に同じ値を使用
+- **配列の個数指定**: 配列項目は生成する要素数の範囲(min〜max)をランダムに指定可能
+- **項目の紐付け**: 複数のフィールドを選択してグループ化し、実データに存在した組み合わせを崩さずに生成(関連性のあるフィールド同士の整合性を保持)
+- **生成行数の指定**: 任意の件数のダミーデータをまとめて生成
+- **プレビュー編集**: 生成結果をテーブル上でセル単位に確認・編集
+- **JSONダウンロード**: 生成したデータを`forge_data.json`としてダウンロード
+
+## 使い方
+
+1. 左側の入力欄にサンプルとなるJSONをペースト
+2. 「JSON解析実行」を押すとフィールド一覧が表示される
+3. 各フィールドの生成ルール(既存値/連番/固定)や配列の個数を設定
+4. 必要に応じて複数フィールドを選択し「紐付け」でグループ化
+5. 生成行数を指定して「JSON生成」を押す
+6. プレビューで内容を確認・編集し、「DOWNLOAD」でJSONファイルとして保存
+
+## セットアップ
+
+```bash
+npm install
+```
+
+## 開発サーバー起動
+
+```bash
+npm run dev
+```
+
+## ビルド
+
+```bash
+npm run build
+```
+
+## Lint
+
+```bash
+npm run lint
+```
+
+## 技術スタック
+
+- [React](https://react.dev/) 19 + [Vite](https://vite.dev/)
+- [react-bootstrap](https://react-bootstrap.github.io/) / Bootstrap 5
+- [lucide-react](https://lucide.dev/)(アイコン)
+- [lodash](https://lodash.com/)(データ操作)
